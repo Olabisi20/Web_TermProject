@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <% include ./partials/header %>
+
+    <title>signup!</title>
+</head>
+
+<body>
+    <div class="container">
+            <h1> Sign up for a new Account</h1>
+            <% if (flash_message.length > 0) { %> 
+                <div class = "alert alert-danger" role="alert"> <%= flash_message %></div>
+                <% } %>
+
+        <form action = "/signup" method = "POST">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" name="email" placeholder="Enter email">
+
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="passworod" placeholder="Password">
+            </div>
+            
+            <div class="form-group">
+                <label for="fullname">fullname</label>
+                <input type="text" class="form-control" name ="fullname" id="fullname" placeholder="Enter fullname">
+            </div>
+            <button type="submit" class="btn btn-primary">Create an account</button>
+        </form>
+    </div>
+
+    <% include ./partials/scripts %>
+</body>
+
+</html>

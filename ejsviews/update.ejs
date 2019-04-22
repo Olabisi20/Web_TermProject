@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <% include ./partials/header %>
+
+
+
+    <title>Update</title>
+</head>
+
+<body>
+    <div class = "container">
+        <h1>Update a news Item</h1>
+        <br>
+        <form action ="/update" method ="POST" >
+                <div class="form-group">
+                  <label for="image">Image</label>
+                  <input type="text" class="form-control" name="image" id="image" 
+                   placeholder="Choose an image" value ="<%=blogs.image %>" >  
+                </div>
+                <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" name="title" id="title" 
+                         placeholder="Enter the title" value ="<%=blogs.title %>">  
+                      </div>
+                <div class="form-group">
+                        <label for="news">News</label><br>
+                        <textarea name = "news" rows="5" cols="80" id="news"><%=blogs.news %></textarea>
+                </div>
+                
+                        <input type="hidden" name="_id" value= "<%= blogs._id %>">
+                <button type="submit" class="btn btn-primary">Update</button>
+              </form>
+
+        <% include ./partials/scripts %>
+
+    </body>

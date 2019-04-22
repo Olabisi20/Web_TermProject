@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <% include ./partials/header %>
+    <title>Post News</title>
+</head>
+
+<body>
+
+        <div class = "container">
+                <h1>Post a news item</h1>
+                <br>
+                <form action ="/postNews" method ="POST">
+                        
+                        
+                        <div class ="form-data"  enctype="multipart/form-data">
+                                <input type="file" name = "imageButton"><br>
+                        </div>
+
+                        <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" class="form-control" name="title" id="title" 
+                                 placeholder="Enter the title">  
+                              </div>
+                        <div class="form-group">
+                                    <label for="news">News</label>
+                                    <input type="text" class="form-control" name="news" id="news" 
+                                     placeholder="Enter the News">  
+                                </div>
+                        
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+        
+                <% include ./partials/scripts %>
+        
+            </body>
+            
+            </html>

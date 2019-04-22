@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <% include ./partials/header %>
+
+    <title>User Home</title>
+</head>
+
+<body>
+        <div class="jumbotron">
+            <h1> Streamline News</h1>
+    
+            <div class="container">
+                
+                <div class="row">
+                    <% for (const blog of blogs) { %>
+                        <div class="media">
+                                <div class="media-body">
+                                  <h5 class="mt-0 mb-1"> <%= blog.title %></h5>
+                                  <%=blog.news%>
+
+                                  <div class="card">
+                                        <div class="card-header">
+                                          Comments
+                                        </div>
+                                        <div class="card-body">
+                                          <blockquote class="blockquote mb-0">
+                                            <p> <% for (const a of blog.comments) { %></p>
+                                                <%=a %><br>
+                                                <% } %>
+                                          </blockquote>
+                                        </div>
+                                      </div>
+                                </div>
+                                <img src="/public/images/<%=blog.images %>" class="ml-3" height= 150 width = 150 alt="...">
+                              </div>
+                                <br>
+                             
+                    <% } %>
+    
+                </div>
+            </div>
+    
+        </div>
+        
+        
+
+    <% include ./partials/scripts %>
+</body>
+
+</html>

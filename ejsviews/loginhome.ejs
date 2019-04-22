@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <% include ./partials/header %>
+
+    <title>User Home</title>
+</head>
+
+<body>
+
+  
+    
+        <div class="jumbotron">
+            <h1> Welcome, <%= user.fullname %></h1>
+
+            <nav class="nav justify-content-end">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Options
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="/viewUpdateNews">View News</a>
+                  <a class="dropdown-item" href="/postNews">Post News</a>
+                  <a class="dropdown-item" href="/logout">Logout</a>
+                </div>
+              </div>
+            </nav>
+
+              
+              <% if(user.admin) { %> 
+                  <a href="/admin/adminhome", class="btn btn-primary" role="button" >Go to Admin</a>
+              <% } %>
+    
+        </div>
+        
+        
+
+    <% include ./partials/scripts %>
+</body>
+
+</html>

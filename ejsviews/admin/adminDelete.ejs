@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <% include ../partials/header %>
+
+    <title>Admin's Home</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1> Admin</h1>
+        
+    </div>
+
+    <!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <% include ../partials/header %>
+    <title>User</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>View and Delete News</h1>
+        <br>
+      
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">News</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (const blog of blogs) { %>
+                <tr>
+                    <td>
+                        <img src="/public/images/<%=blog.images %>" height="50" width="50">
+                    </td>
+                    <td>
+                        <%= blog.title %>
+                    </td>
+                    
+                    <td>
+                        <%= blog.news %>
+                    </td>
+
+                    
+
+                    <td>
+                        <form action="/admin/adminDelete" method="POST">
+                            <input type="hidden" name="_id" value="<%= blog._id %>">  
+                                      <button type="submit" class="btn btn-danger">DELETE</button>            
+                        </form>
+                    </td>
+
+                   
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <% include ../partials/scripts %>
+</body>
+
+</html>
+
+    <% include ../partials/scripts %>
+</body>
+
+</html>

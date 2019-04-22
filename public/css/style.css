@@ -1,0 +1,21 @@
+
+.body{
+    
+    background-color: aqua;
+}
+
+.mystyle{
+    color: yellowgreen;
+    font:bold italic;
+    border: 1px solid black;
+  outline-style: solid;
+  outline-color: red;
+  outline-width: thick;
+} 
+
+.caption{
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight:bold; 
+  color: yellowgreen;
+}

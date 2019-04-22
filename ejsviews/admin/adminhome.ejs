@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <% include ../partials/header %>
+
+    <title>Admin's Home</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1> Admin's Home page</h1>
+        <h3>
+            Name:  <%= user.fullname %>
+            Admin: <%= user.admin %>
+        </h3>
+
+    </div>
+
+    <!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <% include ../partials/header %>
+    <title>Admin's Home</title>
+</head>
+
+<body>
+   
+    <a href="/admin/adminDelete", class="btn btn-primary" role="button" >View and Delete</a>
+
+    <% include ../partials/scripts %>
+</body>
+
+</html>
