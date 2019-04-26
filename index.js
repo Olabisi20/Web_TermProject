@@ -95,16 +95,16 @@ app.get('/viewUpdateNews', (req, res) => {
 })
 
 app.post('/comment', (req, res) => {
-    //const _id = req.body._id;
-    const comment = req.body.comments;
-   
-//trying to insert comments, not finding the insertOne
-    app.locals.commentCollection.insertOne(comment)
+    const _id = req.body._id;
+    const comments = req.body.comments;
+    const query={_id:database.ObjectID(_id)}
+
+    app.locals.blogCollection.insertOne(query, comments)
         .then(result => {
             res.redirect('/news')
         })
         .catch(error => {
-            res.render('errorPage', {message: '/news', error})
+            res.render('errorPage', {message: error})
         })
     })
 
@@ -134,6 +134,7 @@ app.post('/admin/adminDelete', (req, res) => {
     const blogToDelete = {_id: database.ObjectID(_id)};
     app.locals.blogCollection.deleteOne(blogToDelete)
         .then(result => {
+            
             res.redirect('/admin/adminDelete')
         })
         .catch(error => {
@@ -151,7 +152,7 @@ const storageOptions = multer.diskStorage({
     destination: (req, file, callback) => {
         callback(null, './public/images');
     },
-    myImages: (req, file, callback) => {
+    filename: (req, file, callback) => {
         callback(null, 'image'+Date.now()+path.extname(file.originalname))
     }
 })
@@ -176,31 +177,34 @@ app.get('/postNews', (req, res) => {
 })
 
 app.post('/postNews', (req, res) => {
-    // imageUpload(req, res, error => {
-    //     if(error){
-    //         return res.render('errorPage', {message: error})
+    imageUpload(req, res, error => {
+        if(error){
+            return res.render('errorPage', {message: error})
             
-    //     }else if(!req.file){
-    //         return res.render('errorPage', {message: 'No file selected'});
-    //     }
+        }else if(!req.file){
+            return res.render('errorPage', {message: 'No file selected'});
+        }
   
-   // const image = req.file.myImages
-    const image=req.body.image
+   const image = req.file.filename
     const title = req.body.title
     const news = req.body.news
+    
     const blog = {image, title, news}
-   
+    console.log(`${image}`)
 
     app.locals.blogCollection.insertOne(blog)
         .then(result => {
             res.redirect('/viewUpdateNews')
+            
         })
         .catch(error => {
             res.render('errorPage', {source: '/postNews', error})
         })
+        console.log(`${blog}`)
+        console.log(`${JSON.stringify(blog)}`)
     })
 
-//})
+})
 app.get('/update', (req, res) =>{
     const _id = req.query._id;
     app.locals.blogCollection.find({_id:database.ObjectID(_id)}).toArray()
@@ -265,6 +269,43 @@ function authAsAdmin(req, res, next){
         next();
     }
 }
+
+app.get('/about', (req, res) => {
+    res.render('about')
+})
+
+app.get('/contact', (req, res) => {
+    res.render('contact')
+})
+
+app.post('/contact', (req, res) => {
+    var nodemailer = require('nodemailer');    
+        let mailOpts, smtpTrans;
+        smtpTrans = nodemailer.createTransport({
+          host: 'smtp.gmail.com',
+          port: 465,
+          secure: true,
+          auth: {
+            user: 'formultipurposereasons@gmail.com',
+            pass: 'Multipurpose1@'
+          }
+        });
+        mailOpts = {
+          from: req.body.name + ' &lt;' + req.body.email + '&gt;',
+          to: 'formultipurposereasons@gmail.com',
+          subject: 'New message from contact form at Streamline Blog',
+          text: `${req.body.fullname} (${req.body.email}) says: ${req.body.message}`
+        };
+        smtpTrans.sendMail(mailOpts, function (error, response) {
+          if (error) {
+            res.render('401');
+          }
+          else {
+            res.render('home');
+          }
+        });
+      });
+
 
 app.get('/reset',(req, res) =>{
 

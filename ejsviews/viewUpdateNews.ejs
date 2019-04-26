@@ -26,7 +26,7 @@
                 <% for (const blog of blogs) { %>
                 <tr>
                     <td>
-                        <img src="/public/images/<%=blog.images %>" height="50" width="50">
+                        <img src="/public/images/<%=blog.image %>" height="50" width="50">
                     </td>
                     <td>
                         <%= blog.title %>
@@ -34,7 +34,7 @@
                     
                     <td>
                         <%= blog.news %><br>
-                    <form action ="/comment" method ="POST">
+                    <form action ="/comment" method ="POST" >
                         <div class="form-group">
                                 <label for="addComment">Add comment</label>
                                 <input type="text" class="form-control" name="comments" id="comments" 
